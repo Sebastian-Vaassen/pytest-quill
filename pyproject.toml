@@ -1,0 +1,113 @@
+[tool.poetry]
+name = "pytest-quill"
+version = "0.0.0"
+description = "A tool for generating unit and integration test for the pytest framework using in code annotations."
+authors = ["Sebastian Vaassen <s.vaassen@celonis.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10.0"
+
+
+[tool.poetry.dev-dependencies]
+pre-commit = "^2.20.0"
+black = "^22.6.0"
+pylint = "^2.14.5"
+pytest = "^7.1.2"
+pytest-cov = "^4.0.0"
+pytest-mpl = "^0.16.1"
+pytest-xdist = "^3.1.0"
+toml = "^0.10.2"
+mypy = "^1.2.0"
+isort = "^5.12.0"
+
+[tool.black]
+line-length = 120
+
+[tool.coverage.paths]
+source = ['pytest_quill']
+
+[tool.coverage.run]
+relative_files = true
+branch = true
+parallel = true
+source = ['pytest_quill']
+
+[tool.coverage.report]
+show_missing = true
+precision = 2
+exclude_also = [
+    'if __name__ == .__main__.:',
+    '@(click\.)?command',
+    '@(abc\.)?abstractmethod',
+    'raise NotImplementedError'
+]
+
+[tool.coverage.xml]
+output = 'coverage.xml'
+
+[tool.flakeheaven]
+max-line-length = 120
+select = ["C,E,F,W,B", ]
+
+[tool.isort]
+line_length = 120
+profile = "black"
+
+[tool.mypy]
+strict_optional = false
+
+[[tool.mypy.overrides]]
+module = ["httpx.*", "pythonjsonlogger.*", "toml.*", "yaml.*", ]
+ignore_missing_imports = true
+
+[tool.pydocstyle]
+convention = "google"
+ignore-decorators = "property"
+add-ignore = ["D105", "D107", "D100", ]
+
+[tool.flakeheaven.plugins]
+pycodestyle = ["+*", "-W503", "-E501", "-E203"]
+
+[tool.pylint.basic]
+good-names = ["i", "j", "k", "df", "f", "e", ]
+
+[tool.pylint.FORMAT]
+ignore-long-lines = ["(^\\s*(from\\s+\\S+\\s+)?import\\s+.+$|^\\s*(# )?<?https?:\\/\\/\\S+>?$)", ]
+indent-after-paren = 4
+indent-string = "    "
+max-line-length = 120
+max-module-lines = 99999
+single-line-if-stmt = ["yes", ]
+
+
+
+[tool.pylint."MESSAGES CONTROL"]
+disable = [
+    "import-error",
+    "import-outside-toplevel",
+    "missing-module-docstring",
+    "missing-function-docstring",
+    "missing-class-docstring",
+    "protected-access",
+    "redefined-outer-name",
+    "wrong-import-order",
+    "fixme",
+]
+
+[tool.pylint.similarities]
+ignore-comments = true
+ignore-docstrings = true
+ignore-imports = true
+ignore-signatures = true
+min-similarity-lines = 10
+
+[tool.pylint.TYPECHECK]
+contextmanager-decorators = ["contextlib.contextmanager,contextlib2.contextmanager", ]
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "DEBUG"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

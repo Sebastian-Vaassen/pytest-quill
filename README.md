@@ -1,2 +1,2 @@
 # pytest-quill
-A tool for generatic unit and intigration test for the pytest framework using in code annotations.
+A tool for generating unit and integration test for the pytest framework using in code annotations.
