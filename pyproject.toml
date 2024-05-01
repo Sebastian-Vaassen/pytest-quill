@@ -45,10 +45,6 @@ exclude_also = [
 [tool.coverage.xml]
 output = 'coverage.xml'
 
-[tool.flakeheaven]
-max-line-length = 120
-select = ["C,E,F,W,B", ]
-
 [tool.isort]
 line_length = 120
 profile = "black"
@@ -65,14 +61,8 @@ convention = "google"
 ignore-decorators = "property"
 add-ignore = ["D105", "D107", "D100", ]
 
-[tool.flakeheaven.plugins]
-pycodestyle = ["+*", "-W503", "-E501", "-E203"]
-
-[tool.pylint.basic]
-good-names = ["i", "j", "k", "df", "f", "e", ]
 
 [tool.pylint.FORMAT]
-ignore-long-lines = ["(^\\s*(from\\s+\\S+\\s+)?import\\s+.+$|^\\s*(# )?<?https?:\\/\\/\\S+>?$)", ]
 indent-after-paren = 4
 indent-string = "    "
 max-line-length = 120
@@ -80,11 +70,8 @@ max-module-lines = 99999
 single-line-if-stmt = ["yes", ]
 
 
-
 [tool.pylint."MESSAGES CONTROL"]
 disable = [
-    "import-error",
-    "import-outside-toplevel",
     "missing-module-docstring",
     "missing-function-docstring",
     "missing-class-docstring",
@@ -99,7 +86,7 @@ ignore-comments = true
 ignore-docstrings = true
 ignore-imports = true
 ignore-signatures = true
-min-similarity-lines = 10
+min-similarity-lines = 5
 
 [tool.pylint.TYPECHECK]
 contextmanager-decorators = ["contextlib.contextmanager,contextlib2.contextmanager", ]
